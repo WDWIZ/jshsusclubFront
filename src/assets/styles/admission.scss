@@ -1,0 +1,290 @@
+@use "./utils/variables.scss" as *;
+
+#error{
+    width: 400px;
+    height: 100px;
+    background: #acf;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#adms{
+    width: 80%;
+    height: calc(100% - 80px);
+    color: $textColorDark;
+    position: absolute;
+    left: 10%; bottom: 0;
+    font-family: "Noto Sans KR";
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-between;
+
+    #clubsLists{
+        width: 300px;
+        height: 100%;
+        position: relative;
+
+        .clubsLists_wrap{
+            width: 100%;
+            height: calc(100% - 200px);
+            position: absolute;
+            top: 100px;
+            display: flex;
+            flex-flow: wrap column;
+            justify-content: space-between;
+        }
+
+        #clubsLists_header{
+            width: 100%;
+            height: 60px;
+            position: relative;
+            font-weight: 400;
+            font-size: 50px;
+            line-height: 60px;
+            font-family: "Nanum Gothic";
+        }
+
+        #clubs_wrap{
+            width: 100%;
+            height: calc(100% - 100px);
+            overflow-y: auto;
+
+            .clubs_type{
+                width: 100%;
+                min-height: 50px;
+                margin-top: 20px;
+                overflow: hidden;
+
+                .clubs_type_header{
+                    width: 100%;
+                    height: 50px;
+                    color: $jshsusColorDark;
+                    font-size: 30px;
+                    line-height: 50px;
+                    font-weight: 500;
+                    display: flex;
+
+                    span{
+                        font-size: 30px;
+                        line-height: 50px;
+                    }
+                }
+
+                ul { margin-top: 20px; }
+
+                .clubs{
+                    width: 100%;
+                    height: 40px;
+                    font-size: 17.5px;
+                    line-height: 40px;
+                    padding-left: 10px;
+                    font-weight: 500;
+                    cursor: pointer;
+
+                    &:hover{
+                        background: $jshsusColorLight;
+                    }
+
+                    &.myClub{
+                        background: $jshsusColorDark;
+                        color: $textColorLight;
+                    }
+                }
+            }
+        }
+    }
+
+    #applicantsLists{
+        width: calc(100% - 400px);
+        height: 100%;
+        position: relative;
+
+        .applicantsLists_wrap{
+            width: 100%;
+            height: calc(100% - 200px);
+            position: absolute;
+            top: 100px;
+            display: flex;
+            flex-flow: wrap column;
+            justify-content: space-between;
+        }
+
+        #applicantsLists_header{
+            height: 60px;
+            position: relative;
+            font-weight: 500;
+            font-size: 40px;
+            line-height: 60px;
+            font-family: "Nanum Gothic";
+        }
+
+        #applicants_wrap{
+            width: 100%;
+            height: calc(100% - 100px);
+            position: relative;
+            left: 2.5%;
+            display: grid;
+            grid-template-columns:repeat(auto-fit, 200px);
+            grid-template-columns: 1fr;
+            overflow-y: auto;
+            
+            .applicants{
+                width: 95%;
+                height: 50px;
+                margin-top: 10px;
+                position: relative;
+                cursor: pointer;
+                border-radius: 5px;
+                border: 2px solid $jshsusColorLight;
+                display: flex;
+                overflow: hidden;
+
+                .applicants_info{
+                    width: 150px;
+                    height: 50px;
+                    font-size: 22.5px;
+                    font-weight: 400;
+                    line-height: 47.5px;
+                    text-align: left;
+                    padding-left: 20px;
+                }
+
+                .applicants_pick{
+                    width: 50px;
+                    height: 50px;
+                    position: absolute;
+                    right: 0;
+                    text-align: center;
+
+                    span{
+                        font-size: 30px;
+                        font-weight: 400;
+                        line-height: 50px;
+                    }
+
+                    &:hover {color: #f0f0f0; background: $jshsusColorDark;}
+                }
+
+                &:hover{
+                    background: #e0e0e0;
+                    .applicants_info {text-decoration: underline;}
+                }
+
+                &.myClub{
+                    background: $jshsusColorLight;
+
+                    .applicants_pick:hover { background: crimson; }
+                }
+            }
+        }
+    }
+}
+
+#applicantsInfo, #clubInfo{
+    width: 100%;
+    height: calc(100% - 80px);
+    position: absolute;
+    bottom: 0;
+    background: rgba($backgroundColor, .8);
+    backdrop-filter: blur(5px);
+    display: none;
+
+    .modalBox{
+        width: 500px;
+        height: 500px;
+        background: #ddd;
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+
+        #closeModalBox{
+            width: 60px;
+            height: 60px;
+            color: $textColorDark;
+            position: absolute;
+            right: 0;
+            text-align: center;
+            cursor: pointer;
+
+            span{
+                font-size: 40px;
+                line-height: 60px;
+            }
+
+            &:hover { background: crimson; color: $textColorLight; }
+        }
+
+        #modalBox_applicantInfo, #clubInfoName{
+            width: 100%;
+            height: 100px;
+            font-size: 60px;
+            line-height: 95px;
+            font-weight: 100;
+            padding-left: 20px;
+        }
+
+        #clubInfoName{
+            font-size: 40px;
+        }
+
+        #modalBox_joinedClub{
+            width: 100%;
+            height: 300px;
+            position: absolute;
+            bottom: 50px;
+            overflow: auto;
+
+            .modalBox_joinedClubLists{
+                width: 90%;
+                height: 60px;
+                position: relative;
+                left: 5%;
+                display: flex;
+                flex-flow: wrap row;
+                justify-content: space-between;
+
+                h1{
+                    font-size: 20px;
+                    line-height: 60px;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        #clubInfoLeaders{
+            width: 100%;
+            height: 70px;
+            font-size: 25px;
+            line-height: 35px;
+            font-weight: 100;
+            padding-left: 20px;
+        }
+
+        #clubInfo_people{
+            width: 100%;
+            height: 250px;
+            position: absolute;
+            bottom: 50px;
+            overflow: auto;
+
+            .clubInfo_applicants{
+                width: 90%;
+                height: 40px;
+                position: relative;
+                left: 5%;
+                display: flex;
+                flex-flow: wrap row;
+                justify-content: space-between;
+
+                h1{
+                    font-size: 20px;
+                    line-height: 40px;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+
+    &.onDisplay {display: block;}
+}

@@ -1,0 +1,62 @@
+#home{
+    width: 100%;
+    height: calc(100% - 80px);
+    position: absolute;
+    bottom: 0;
+
+    #links{
+        width: 600px;
+        height: 100px;
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-flow: nowrap row;
+        justify-content: space-between;
+        align-items: center;
+
+        #sendToAdmission{
+            width: 400px;
+            height: 150px;
+            background: #acf;
+            overflow: auto;
+            display: flex;
+            flex-flow: wrap column;
+
+            .sendToAdmission{
+                height: 30px;
+                margin-top: 10px;
+                font-size: 20px;
+                font-family: "Noto Sans KR";
+                line-height: 30px;
+                font-weight: 500;
+                cursor: pointer;
+
+                &:hover {text-decoration: underline;}
+            }
+        }
+
+        .linkbox{
+            width: 150px;
+            height: 150px;
+            background: #acf;
+            position: relative;
+        }
+    }
+    
+    #info{
+        width: 500px;
+        height: 40px;
+        position: absolute;
+        bottom: 50px; left: 50%;
+        transform: translate(-50%, 0);
+        
+        h1{
+            line-height: 20px;
+            font-family: "Noto Sans KR";
+            font-size: 15px;
+            font-weight: 300;
+            text-align: center;
+        }
+    }
+}
