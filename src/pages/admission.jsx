@@ -59,7 +59,7 @@ function Admission(){
     const [ myClub, setMyClub ] = useState({});
     const [ myClubApplicants, setMyClubApplicants ] = useState([]);
 
-    axios.defaults.withCredentials = true;
+    axios.defaults.withCredentials = false;
 
     const [ modalBoxInfo, setModalBoxInfo ] = useState({
         applicantInfo: [

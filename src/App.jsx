@@ -18,6 +18,8 @@ function App(){
     const [ pageID, setpageID ] = useState("");
     const [ socket, setSocket ] = useState(null);
 
+    axios.defaults.withCredentials = false;
+
     const [ isLogined, setIsLogined ] = useState(false);
     const [ userData, setUserData ] = useState({
         isLogined: false,
@@ -56,9 +58,7 @@ function App(){
             }
         }
 
-        const moreInfo = await axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}userInfo?userID=${extractedUserID}`, {
-            withCredentials: true
-        });
+        const moreInfo = await axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}userInfo?userID=${extractedUserID}`);
 
         _userData.data.userStuid = moreInfo.data.stuid;
         _userData.data.userName = moreInfo.data.name;

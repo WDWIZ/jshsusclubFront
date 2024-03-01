@@ -23,6 +23,7 @@ const $clubLists = ({ id, data }) => {
 
 function Club(){
     const [ clubLists, setClubLists ] = useState([]);
+    axios.defaults.withCredentials = false;
 
     useEffect(() => {
         axios({
