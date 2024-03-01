@@ -58,7 +58,9 @@ function App(){
             }
         }
 
-        const moreInfo = await axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}userInfo?userID=${extractedUserID}`);
+        const moreInfo = await axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}userInfo?userID=${extractedUserID}`,{
+            withCredentials: false
+        });
 
         _userData.data.userStuid = moreInfo.data.stuid;
         _userData.data.userName = moreInfo.data.name;
