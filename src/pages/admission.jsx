@@ -120,7 +120,6 @@ function Admission(){
     async function ShowClubInfo(id){
         axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}clubs/clubInfo/${id}`).then((res) => {
             setClubInfo(res.data);
-            console.log(res.data);
         });
 
         setShowClubInfo(true);
