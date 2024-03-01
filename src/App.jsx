@@ -46,6 +46,9 @@ function App(){
         const extractedUserID = searchParams.get('userID');
         const extractedSuccessURL = searchParams.get('successURL');
         const successURL = (extractedSuccessURL && (extractedSuccessURL != "undefined" && extractedSuccessURL != 404)) ? extractedSuccessURL : "/";
+        console.log(searchParams);
+        console.log(extractedSuccessURL);
+        console.log(extractedUserID);
         
         navigate(`${successURL}`);
 
