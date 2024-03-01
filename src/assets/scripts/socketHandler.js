@@ -3,7 +3,9 @@ import io from 'socket.io-client';
 // Define your socket handling function
 const socketHandler = () => {
   // Connect to your socket server
-    const socket = io(import.meta.env.VITE_BACKEND_SERVER_URL);
+    const socket = io(import.meta.env.VITE_BACKEND_SERVER_URL, {
+      cors: { origin: '*' }
+    });
 
   // Define your socket event listeners
     socket.on('connect', () => {
