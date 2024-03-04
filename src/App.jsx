@@ -46,7 +46,7 @@ function App(){
         const extractedstuid = searchParams.get('stuid');
         const extractedSuccessURL = searchParams.get('successURL');
         const successURL = (extractedSuccessURL && (extractedSuccessURL != "undefined" && extractedSuccessURL != 404)) ? extractedSuccessURL : "/";
-        const extractedUserID = await axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}/userID/?stuid=${extractedstuid}`, {
+        const extractedUserID = await axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}userID/?stuid=${extractedstuid}`, {
             withCredentials: false
         });
         console.log(searchParams);
