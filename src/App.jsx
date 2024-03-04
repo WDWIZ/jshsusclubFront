@@ -48,6 +48,8 @@ function App(){
         const successURL = (extractedSuccessURL && (extractedSuccessURL != "undefined" && extractedSuccessURL != 404)) ? extractedSuccessURL : "/";
         const extractedUserID = await axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}userID/?stuid=${extractedstuid}`, {
             withCredentials: false
+        }).then(result => {
+            return result[0].userID;
         });
         console.log(searchParams);
         console.log(extractedSuccessURL);
