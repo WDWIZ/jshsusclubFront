@@ -25,13 +25,13 @@
             overflow: auto;
             display: flex;
             flex-flow: wrap column;
-            border: 2px solid #35948a;
+            border: 2px solid $jshsusColorLight2;
             border-radius: 20px;
 
             .admissionTitle{
                 height: 50px;
                 color: #fff;
-                background: #35948a;
+                background: $jshsusColorLight2;
                 margin-top: 0;
                 margin-left: -15px;
                 padding-left: 15px;
@@ -62,7 +62,7 @@
             background: $backgroundColor;
             position: relative;
             font-family: "Noto Sans KR";
-            border: 2px solid #35948a;
+            border: 2px solid $jshsusColorDark;
             border-radius: 20px;
             font-size: 20px;
             font-weight: 700;
