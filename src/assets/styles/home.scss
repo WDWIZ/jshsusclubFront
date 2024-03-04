@@ -1,3 +1,5 @@
+@use "./utils/variables.scss" as *;
+
 #home{
     width: 100%;
     height: calc(100% - 80px);
@@ -18,13 +20,31 @@
         #sendToAdmission{
             width: 400px;
             height: 150px;
-            background: #acf;
+            background: $backgroundColor;
+            padding-left: 15px;
             overflow: auto;
             display: flex;
             flex-flow: wrap column;
+            border: 2px solid #35948a;
+            border-radius: 20px;
+
+            .admissionTitle{
+                height: 50px;
+                color: #fff;
+                background: #35948a;
+                margin-top: 0;
+                margin-left: -15px;
+                padding-left: 15px;
+                display: flex;
+                align-items: center;
+                font-size: 20px;
+                font-family: "Noto Sans KR";
+                line-height: 30px;
+                font-weight: 500;
+            }
 
             .sendToAdmission{
-                height: 30px;
+                height: 20px;
                 margin-top: 10px;
                 font-size: 20px;
                 font-family: "Noto Sans KR";
@@ -39,8 +59,24 @@
         .linkbox{
             width: 150px;
             height: 150px;
-            background: #acf;
+            background: $backgroundColor;
             position: relative;
+            font-family: "Noto Sans KR";
+            border: 2px solid #35948a;
+            border-radius: 20px;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            display: table;
+
+            .link{
+                display: table-cell;
+                vertical-align: middle;
+                text-decoration: none;
+                color: #000;
+
+                &:hover {text-decoration: underline;}
+            }
         }
     }
     

@@ -39,11 +39,12 @@ function Home(){
             <div id="home">
                 <div id="links">
                     <div id="sendToAdmission">
+                        <h1 className="admissionTitle">이거 뭐였는지 기억안남.</h1>
                         {myClubs.map((data, idx) => <$sendToAdmission id={data.id} key={"sta" + idx} name={data.name} onClick={handleNavigateToAdmission} />)}
                     </div>
 
                     <div className="linkbox">
-                        <NavLink to="/clubs">동아리 리스트</NavLink>
+                        <NavLink className="link" to="/clubs">동아리 리스트</NavLink>
                     </div>
                 </div>
 

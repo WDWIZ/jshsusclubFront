@@ -9,7 +9,7 @@ let MyClubApplicants = [];
 
 function convertTZ(_date, tzString) {
     const date = new Date((typeof _date === "string" ? new Date(_date) : _date).toLocaleString("en-US", {timeZone: tzString}));
-
+    
     const month = date.toLocaleString('default', { month: 'long' });
     const day = date.getDate();
     const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });

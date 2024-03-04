@@ -31,18 +31,20 @@
             position: absolute;
             top: 100px;
             display: flex;
-            flex-flow: wrap column;
+            flex-flow: wrap column; 
+            font-family: "GmarketSansBold";
             justify-content: space-between;
         }
 
         #clubsLists_header{
-            width: 100%;
+            width: 90%;
             height: 60px;
             position: relative;
             font-weight: 400;
             font-size: 50px;
             line-height: 60px;
-            font-family: "Nanum Gothic";
+            font-family: "GmarketSansBold";
+            text-align: center;
         }
 
         #clubs_wrap{
@@ -116,7 +118,7 @@
             font-weight: 500;
             font-size: 40px;
             line-height: 60px;
-            font-family: "Nanum Gothic";
+            font-family: "GmarketSansBold";
         }
 
         #applicants_wrap{
@@ -139,6 +141,7 @@
                 border: 2px solid $jshsusColorLight;
                 display: flex;
                 overflow: hidden;
+                font-family: "Nanum Gothic";
 
                 .applicants_info{
                     width: 150px;
@@ -148,6 +151,8 @@
                     line-height: 47.5px;
                     text-align: left;
                     padding-left: 20px;
+                    padding-top: 3px;
+                    font-family: "GmarketSansMedium";
                 }
 
                 .applicants_pick{
@@ -163,7 +168,7 @@
                         line-height: 50px;
                     }
 
-                    &:hover {color: #f0f0f0; background: $jshsusColorDark;}
+                    &:hover {color: $textColorLight; background: $jshsusColorDark;}
                 }
 
                 &:hover{
