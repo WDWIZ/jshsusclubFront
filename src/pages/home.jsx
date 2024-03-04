@@ -52,7 +52,7 @@ function Home(){
                     <h1>
                         Made By WDWIZ {'{'}IDBI{'}'}, Blight Studioz {'{'}IDBI{'}'}<br/>
                         With Jshsus<br/>
-                        Software Responsibility (SO) : WDWIZ {'{'}IDBI{'}'} , Blight Stduioz {'{'}IDBI{'}'}, IDBI UNION</h1>
+                        Software Responsibility (SR) : WDWIZ {'{'}IDBI{'}'} , Blight Stduioz {'{'}IDBI{'}'}, IDBI UNION</h1>
                 </div>
             </div>
         </>
