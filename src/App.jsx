@@ -49,9 +49,8 @@ function App(){
         let extractedUserID;
         const extractUserID = await axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}userID/?stuid=${extractedstuid}`, {
             withCredentials: false
-        }).then(result => {
-            extractedUserID = result.userID;
         });
+        extractedUserID = extractUserID.userID;
         console.log(searchParams);
         console.log(extractedSuccessURL);
         console.log(extractedUserID);
