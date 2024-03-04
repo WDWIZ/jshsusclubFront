@@ -50,10 +50,9 @@ function App(){
         const extractUserID = await axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}userID/?stuid=${extractedstuid}`, {
             withCredentials: false
         });
-        extractedUserID = extractUserID.userID;
+        extractedUserID = extractUserID.data.userID;
         console.log(searchParams);
         console.log(extractedSuccessURL);
-        console.log(extractUserID);
         console.log(extractedUserID);
         
         navigate(`${successURL}`);
