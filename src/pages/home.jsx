@@ -51,6 +51,7 @@ function Home(){
                 <div id="info">
                     <h1>
                         Made By WDWIZ {'{'}IDBI{'}'}, Blight Studioz {'{'}IDBI{'}'}<br/>
+                        Designed By 남혜린<br/>
                         With Jshsus<br/>
                         Software Responsibility (SR) : WDWIZ {'{'}IDBI{'}'} , Blight Stduioz {'{'}IDBI{'}'}, IDBI UNION</h1>
                 </div>
