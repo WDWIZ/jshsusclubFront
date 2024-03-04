@@ -53,6 +53,7 @@ function App(){
         extractedUserID = extractUserID.userID;
         console.log(searchParams);
         console.log(extractedSuccessURL);
+        console.log(extractUserID);
         console.log(extractedUserID);
         
         navigate(`${successURL}`);
