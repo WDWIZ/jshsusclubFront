@@ -1,15 +1,15 @@
 import io from 'socket.io-client';
 
 // Define your socket handling function
-const socketHandler = () => {
+const socketHandler = (user) => {
   // Connect to your socket server
-    const socket = io(import.meta.env.VITE_BACKEND_SERVER_URL, {
+    const socket = io(`${import.meta.env.VITE_BACKEND_SERVER_URL}/${user}`, {
       cors: { origin: '*' }
     });
 
   // Define your socket event listeners
     socket.on('connect', () => {
-        console.log('Connected to socket server');
+        console.log(`Connected to server: ${user}`);
     });
 
     socket.on('pong', (data) => {

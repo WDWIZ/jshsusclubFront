@@ -24,7 +24,7 @@ function Header({subtitle, userData}){
 
     return(
         <>
-            <header className="header header2" id="header">
+            <header className="header" id="header">
                 <div className="left_wrap">
                     <Link to="/"><img id="logo" src="https://jshsus.kr/resources/icon/lIcon.png" /></Link>
                     <Link id="header_title" className="title" to="/">{import.meta.env.VITE_TITLE}</Link>
@@ -36,7 +36,7 @@ function Header({subtitle, userData}){
 
                 <div className="right_wrap">
                     <a className={`login ${(loginInfo.isLogined) ? "logined" : ""}`} onClick={login}>
-                        {(loginInfo.isLogined) ? `${loginInfo.data.userStuid} ${loginInfo.data.userName}` : "로그인"}
+                        {(loginInfo.isLogined) ? `${loginInfo.data.stuid} ${loginInfo.data.name}` : "로그인"}
                     </a>
                     <div id="menu_icon">
                         <span className="menu_icons"></span>

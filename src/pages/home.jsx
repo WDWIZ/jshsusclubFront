@@ -3,59 +3,78 @@ import '../assets/styles/home.scss';
 import { useState, useEffect } from 'react';
 import { useSocket } from "../hooks/socketProvider";
 
-const $sendToAdmission = ({ id, name, onClick }) => {
+const TITLE = import.meta.env.VITE_TITLE;
+
+const links = [
+    {
+        title: "",
+        path: ""
+    },
+
+    {
+        title: "동아리 신청하기 (1학년)",
+        path: "/apply"
+    },
+
+    {
+        title: "내 동아리 관리 (짱)",
+        path: "/pick"
+    },
+
+    {
+        title: "시스템 관리 (관리자)",
+        path: "/admin"
+    }
+]
+
+const $serviceLink = ({ level }) => {
     return(
-        <>
-            <h1 className="sendToAdmission" onClick={() => {onClick(id, name)}}>{`${id}. ${name} 신입생 모집`}</h1>
-        </>
-    )
+        <NavLink to={`${links[level].path}`} className="serviceLink">{`${links[level].title}`}</NavLink>
+    );
 }
 
 function Home(){
-    const [ myClubs, setMyClubs ] = useState([]);
     const socket = useSocket();
-    const navigate = useNavigate();
+    const [ userLevel, setUserLevel ] = useState(0);
+    const [ init, setInit ] = useState(0);
 
     useEffect(() => {
         if (!socket) return;
 
-        socket.emit('myClubs');
+        if (!init){
+            socket.on('again', (data) => {
+                socket.emit('levelCheck');
+            });
 
-        socket.on('yourClubs', (data) => {
-            setMyClubs(data);
-        });
-    
-        return () => {
-            socket.off('yourClubs');
-        };
+            socket.on("yourLevel", async (data) => {
+                if (data == null) setUserLevel(0);
+                else setUserLevel(data + 1);
+                setInit(1);
+            });
+
+            socket.emit("levelCheck");
+        }
     }, [socket]);
-
-    const handleNavigateToAdmission = (clubID, clubName) => {
-        navigate('/admission', { state: {id: clubID, name: clubName} });
-    };
 
     return(
         <>
-            <div id="home">
-                <div id="links">
-                    <div id="sendToAdmission">
-                        <h1 className="admissionTitle">동아리 신입생 모집</h1>
-                        {myClubs.map((data, idx) => <$sendToAdmission id={data.id} key={"sta" + idx} name={data.name} onClick={handleNavigateToAdmission} />)}
-                    </div>
-
-                    <div className="linkbox">
-                        <NavLink className="link" to="/clubs">동아리 리스트</NavLink>
-                    </div>
-                </div>
-
-                <div id="info">
-                    <h1>
-                        Made By WDWIZ {'{'}IDBI{'}'}, Blight Studioz {'{'}IDBI{'}'}<br/>
-                        Designed By 남혜린<br/>
-                        With Jshsus<br/>
-                        Software Responsibility (SR) : WDWIZ {'{'}IDBI{'}'} , Blight Stduioz {'{'}IDBI{'}'}, IDBI UNION</h1>
-                </div>
+        <div id="home">
+            <div className="landing">
+                <h1 className="title">{TITLE}</h1>
+                <h1 className="subtitle">동아리</h1>
             </div>
+
+            <div className="serviceTo">
+                <$serviceLink level={userLevel} key="serviceLink" />
+            </div>
+
+            <div className="serviceInfo">
+                <h1>Made By WDWIZ {'{'}IDBI{'}'}, Blight Studioz {'{'}IDBI{'}'}<br/>
+                    With Jshsus<br/>
+                    Software Responsibility (SR): WDWIZ {'{'}IDBI{'}'} , Blight Stduioz {'{'}IDBI{'}'}, IDBI UNION<br/>
+                    Powered By: Jshsus (iam.jshsus.kr), CloudType, Netlify</h1>
+            </div>
+        </div>
         </>
     )
 }

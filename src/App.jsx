@@ -1,8 +1,8 @@
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 
+import Header from "./components/header";
 import pages from './pages/pages';
 
-import Header from "./components/header";
 import { useState, useEffect } from 'react';
 
 import "./assets/scripts/socketHandler";
@@ -10,15 +10,21 @@ import socketHandler from './assets/scripts/socketHandler';
 import { SocketProvider } from './hooks/socketProvider';
 import axios from "axios";
 
+const levelInfo = {
+    0: "applicant",
+    1: "leader",
+    2: "admin"
+}
+
 function App(){
     const { pathname } = useLocation();
     const navigate = useNavigate();
+    
     const title = import.meta.env.VITE_TITLE;
     const [ subtitle, setSubtitle ] = useState("");
     const [ pageID, setpageID ] = useState("");
+    
     const [ socket, setSocket ] = useState(null);
-
-    axios.defaults.withCredentials = false;
 
     const [ isLogined, setIsLogined ] = useState(false);
     const [ userData, setUserData ] = useState({
@@ -33,7 +39,16 @@ function App(){
         setpageID((newID == "home") ? "" : newID);
 
         document.title = title + ' : ' + newSubtitle;
-    }, [pathname] );
+    }, [pathname]);
+
+    useEffect(() => {
+        let { "id" : newID } = pages.find(p => p.path === pathname) || pages.find(p => p.path === "*");
+        newID = (newID == "home") ? "" : newID;
+
+        if (!pathname.startsWith("/users")){
+            window.location.href=`https://iam.jshsus.kr?service=newjshsustest&successURL=${newID}`;
+        }
+    }, []);    
 
     useEffect(() => {
         if (pathname.startsWith("/users")) handleLogin();
@@ -43,52 +58,36 @@ function App(){
 
     async function handleLogin(){
         const searchParams = new URLSearchParams(location.search);
-        const extractedstuid = searchParams.get('stuid');
+        const extractedAccessKey = searchParams.get('accessKey');
         const extractedSuccessURL = searchParams.get('successURL');
         const successURL = (extractedSuccessURL && (extractedSuccessURL != "undefined" && extractedSuccessURL != 404)) ? extractedSuccessURL : "/";
-        let extractedUserID;
-        const extractUserID = await axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}userID/?stuid=${extractedstuid}`, {
-            withCredentials: false
-        });
-        extractedUserID = extractUserID.data.userID;
-        console.log(searchParams);
-        console.log(extractedSuccessURL);
-        console.log(extractedUserID);
         
         navigate(`${successURL}`);
 
         let _userData = {
             isLogined: true,
             data: {
-                userID: extractedUserID,
-                userStuid: 0,
-                userName: ""
+                stuid: 0,
+                name: "",
+                level: 0
             }
         }
 
-        const moreInfo = await axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}userInfo?userID=${extractedUserID}`,{
+        const moreInfo = await axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}/userInfo?accessKey=${extractedAccessKey}`, {
             withCredentials: false
         });
 
-        _userData.data.userStuid = moreInfo.data.stuid;
-        _userData.data.userName = moreInfo.data.name;
+        _userData.data.stuid = moreInfo.data.stuid;
+        _userData.data.name = moreInfo.data.name;
+        _userData.data.level = moreInfo.data.level;
 
         setUserData(_userData);
 
-        const socketFunc = socketHandler();
+        const socketFunc = socketHandler(levelInfo[moreInfo.data.level]);
         setSocket(socketFunc);
 
         socketFunc.emit("login", _userData.data);
     }
-
-    useEffect(() => {
-        let { "id" : newID } = pages.find(p => p.path === pathname) || pages.find(p => p.path === "*");
-        newID = (newID == "home") ? "" : newID;
-
-        if (!pathname.startsWith("/users")){
-            window.location.href=`https://iam.jshsus.kr?service=newjshsus&successURL=${newID}`;
-        }
-    }, []);
 
     return(
         <>
