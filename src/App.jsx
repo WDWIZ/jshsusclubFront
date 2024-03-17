@@ -46,7 +46,7 @@ function App(){
         newID = (newID == "home") ? "" : newID;
 
         if (!pathname.startsWith("/users")){
-            window.location.href=`https://iam.jshsus.kr?service=newjshsustest&successURL=${newID}`;
+            window.location.href=`https://iam.jshsus.kr?service=newjshsus&successURL=${newID}`;
         }
     }, []);    
 
