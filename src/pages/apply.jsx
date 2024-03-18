@@ -81,7 +81,7 @@ function Apply(){
     axios.defaults.withCredentials = false;
 
     useEffect(() => {
-        if (!init) return;
+        if (init) return;
 
         axios.get(`${SERVER}/clubs/types`).then(res => {
             setClubTypes(res.data);
