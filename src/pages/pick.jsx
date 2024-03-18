@@ -71,6 +71,7 @@ function Pick(){
         });
 
         socket.on('updateClubs', data => {
+            console.log(data.type, _myClubs[_watching]);
             updateClubs(data.type);
         });
 
