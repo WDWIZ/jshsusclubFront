@@ -44,7 +44,7 @@ function Pick(){
     const [applicants, setApplicants] = useState([[]]);
 
     const [ init, setInit ] = useState(0);
-    const [ doIt, setDoIt ] = useState(1);
+    const [ doIt, setDoIt ] = useState(true);
 
     const navigate = useNavigate();
 
@@ -85,7 +85,7 @@ function Pick(){
     async function updateClubs(type){
         if (!_myClubs[_watching].type) return;
         if (_myClubs[_watching].type == type){
-            setDoIt(1);
+            setDoIt(true);
             socket.emit("init");
             return;
         }
@@ -94,7 +94,7 @@ function Pick(){
     function updateApprove(id){
         if (!doIt) return;
         
-        setDoIt(0);
+        setDoIt(false);
         socket.emit('update', {applyID: id});
     }
 
