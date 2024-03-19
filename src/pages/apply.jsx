@@ -77,8 +77,7 @@ function Apply(){
     const [ jwatching, setJWatching ] = useState(0);
 
     const [ init, setInit ] = useState(0);
-
-    const [ doIt, setDoIt ] = useState(1);
+    const [ doIt, setDoIt ] = useState(true);
 
     axios.defaults.withCredentials = false;
 
@@ -111,14 +110,13 @@ function Apply(){
 
         socket.on('updateApply', data => {
             if (_userData.id == data){
-                setDoIt(1);
+                setDoIt(true);
                 socket.emit('myApply');
             }
         });
 
         socket.on('yourApply', data => {
             setApplied(data);
-            setDoIt(0);
             setInit(1);
         });
 
@@ -162,6 +160,8 @@ function Apply(){
     }
 
     function updateApply(clubID, jimang, data){
+        if (!doIt) return;
+        
         let flag = true;
 
         applied.map((x, idx) => {
@@ -177,6 +177,8 @@ function Apply(){
 
         data.jimang = jimang;
         data.clubID = clubID;
+
+        setDoIt(false);
 
         socket.emit("update", data);
     }
