@@ -78,6 +78,8 @@ function Apply(){
 
     const [ init, setInit ] = useState(0);
 
+    const [ doIt, setDoIt ] = useState(1);
+
     axios.defaults.withCredentials = false;
 
     useEffect(() => {
@@ -108,11 +110,15 @@ function Apply(){
         });
 
         socket.on('updateApply', data => {
-            if (_userData.id == data) socket.emit('myApply');
+            if (_userData.id == data){
+                setDoIt(1);
+                socket.emit('myApply');
+            }
         });
 
         socket.on('yourApply', data => {
             setApplied(data);
+            setDoIt(0);
             setInit(1);
         });
 
