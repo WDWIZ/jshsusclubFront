@@ -109,7 +109,7 @@ function Apply(){
         });
 
         socket.on('updateApply', data => {
-            if (_userData.id == data){
+            if (data.includes(_userData.id)){
                 setDoIt(true);
                 socket.emit('myApply');
             }
