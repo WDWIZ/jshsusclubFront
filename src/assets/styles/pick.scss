@@ -39,7 +39,7 @@
         }
 
         .applicants_wrap{
-            width: calc(100% - 350px);
+            width: calc(100% - 400px);
             height: calc(100% - 300px);
             position: absolute;
             bottom: 50px;
@@ -113,6 +113,33 @@
                 }
 
                 &:hover { background: #e0e0e0; }
+            }
+        }
+    }
+
+    .save{
+        width: 100px;
+        height: 50px;
+        position: absolute;
+        top: 250px; right: calc(10% + 150px);
+
+        &Data{
+            width: 100%;
+            height: 100%;
+            border: none;
+            border: 2px solid transparent;
+            outline: none;
+            font-size: 20px;
+            font-family: "Noto Sans KR";
+
+            &.changed{
+                border-color: $jshsusColorDark;
+                cursor: pointer;
+                
+                &:hover{
+                    background: $jshsusColorDark;
+                    color: $textColorLight;
+                }
             }
         }
     }

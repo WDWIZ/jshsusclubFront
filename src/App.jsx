@@ -47,6 +47,7 @@ function App(){
 
         if (!pathname.startsWith("/users")){
             window.location.href=`https://iam.jshsus.kr/?service=newjshsus&successURL=${newID}`;
+            //window.location.href=`http://localhost:5173/users?accessKey=30401&successURL=${newID}`;
         }
     }, []);    
 

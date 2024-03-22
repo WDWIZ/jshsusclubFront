@@ -12,6 +12,7 @@ function Header({subtitle, userData}){
 
     function login(){
         window.location.href=`https://iam.jshsus.kr?service=newjshsus&successURL=${pathname}`;
+        //window.location.href = `http://localhost:3001/?successURL=${pathname}`;
     }
 
     useEffect(() => {
