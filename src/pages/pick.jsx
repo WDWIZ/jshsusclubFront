@@ -144,6 +144,8 @@ function Pick(){
     }
 
     function submitApprove(){
+        if (JSON.stringify(dMyApplicants) === '{}') return;
+        
         socket.emit("update", dMyApplicants);
     }
 
