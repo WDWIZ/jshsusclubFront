@@ -131,10 +131,12 @@
             outline: none;
             font-size: 20px;
             font-family: "Noto Sans KR";
+            display: none;
 
             &.changed{
                 border-color: $jshsusColorDark;
                 cursor: pointer;
+                display: block;
                 
                 &:hover{
                     background: $jshsusColorDark;
